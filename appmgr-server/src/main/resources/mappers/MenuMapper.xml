@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj.appmgr.server.mapper.menu.MenuMapper">
+
+    <resultMap id="menuMap" type="com.rj.appmgr.server.dto.entity.MenuMap">
+    </resultMap>
+    
+    <select id="getMenuMapList" resultMap="menuMap">
+        select cate.NAME as categoryName,menu.* ,(select app.APP_NAME from tab_app_info app where menu.MENU_APP_ID = app.APP_ID) as APP_NAME,(select dic.value from tab_dictionary dic where menu.MENU_TYPE = dic.KEY and dic.FIELD_NAME = "MENU_TYPE") as MENU_VALUE from tab_menu menu left join tab_category cate on menu.CATEGORY_ID = cate.ID
+            <where>
+                <if test="menuName != null">
+                    and menu.MENU_NAME LIKE CONCAT ('%',#{menuName},'%')
+                </if>
+            </where>
+            having 1 = 1
+            <if test="menuType != null">
+                and MENU_TYPE = #{menuType}
+            </if>
+            <if test="categoryId != null">
+                and CATEGORY_ID = #{categoryId}
+            </if>
+            LIMIT #{pageSize} OFFSET #{offSet}
+    </select>
+
+    <select id="getMenuMapListByPage" resultMap="menuMap">
+        select cate.NAME as categoryName,menu.* ,(select app.APP_NAME from tab_app_info app where menu.MENU_APP_ID = app.APP_ID) as APP_NAME,(select dic.value from tab_dictionary dic where menu.MENU_TYPE = dic.KEY and dic.FIELD_NAME = "MENU_TYPE") as MENU_VALUE from tab_menu menu left join tab_category cate on menu.CATEGORY_ID = cate.ID
+        <where>
+            <if test="menuName != null and menuName != ''">
+                and menu.MENU_NAME LIKE CONCAT ('%',#{menuName},'%')
+            </if>
+        </where>
+        having 1 = 1
+        <if test="categoryId != null and categoryId != ''">
+            and CATEGORY_ID = #{categoryId}
+        </if>
+        <if test="menuType != null and menuType != ''">
+            and MENU_TYPE = #{menuType}
+        </if>
+
+    </select>
+
+
+</mapper>
