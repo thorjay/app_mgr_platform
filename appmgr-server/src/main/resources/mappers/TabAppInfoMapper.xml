@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj.appmgr.server.ms.mapper.TabAppInfoMapper">
+
+    <resultMap id="appInfoMap" type="com.rj.appmgr.server.ms.entity.TabAppInfo">
+        <result property="appId" column="APP_ID"/>
+        <result property="appName" column="APP_NAME"/>
+        <result property="appType" column="APP_TYPE"/>
+        <result property="appRequestHost" column="APP_REQUEST_HOST"/>
+        <result property="appPath" column="APP_PATH"/>
+    </resultMap>
+
+    <!--关联查询-->
+    <select id="queryAppList" resultMap="appInfoMap">
+        select a.APP_ID, a.APP_NAME, a.APP_TYPE, a.APP_REQUEST_HOST, a.APP_PATH from tab_app_info a left join tab_dictionary d on a.APP_TYPE = d.KEY where d.FIELD_NAME = 'app_type'
+    </select>
+
+    <!--关联&分页查询-->
+    <select id="queryAppListPage" resultMap="appInfoMap">
+        select * from tab_app_info a left join tab_dictionary d on a.APP_TYPE = d.KEY
+            ${ew.customSqlSegment} and d.FIELD_NAME = 'app_type'
+    </select>
+
+</mapper>
