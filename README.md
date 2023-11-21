@@ -6,7 +6,7 @@
 
 之前介绍了类微信小程序，公众号的实现原理,如需了解请点击[LightWebViewBridge](https://github.com/thorjay/LightWebviewBridge)。
 
-基于这种实现机制，我们可以创造性地创建一种HyBirdAPP应用的开发及运行模式。由Phone+Native纯原生应用+AppStore，切换到Phone+HyBird应用+应用管理平台 这种模式,如下图；微信+小程序(公众号)也是这种方向,可以参考下面的<小程序技术选型>👇🏻。
+基于这种实现机制，我们可以创造性地创建一种HyBridAPP应用的开发及运行模式。由Phone+Native纯原生应用+AppStore，切换到Phone+HyBrid应用+应用管理平台 这种模式,如下图；微信+小程序(公众号)也是这种方向,可以参考下面的<小程序技术选型>👇🏻。
 
 优点：
 
@@ -50,7 +50,7 @@
 
 ## 功能点
 
-* [x] HyBird应用加载、运行SDK[JS-SDK](https://github.com/thorjay/LightWebviewBridge)
+* [x] HyBrid应用加载、运行SDK[JS-SDK](https://github.com/thorjay/LightWebviewBridge)
 * [x] Hibrid子应用的动态资源下载、更新
 * [x] URL子应用的加载
 * [x] Native子引用的加载
