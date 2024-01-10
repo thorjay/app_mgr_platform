@@ -34,6 +34,17 @@ public class AppInfoTest {
        log.info(results.toString());
     }
 
+
+    @Test
+    public void testAddApp(){
+        TabAppInfo tabAppInfo = new TabAppInfo();
+        tabAppInfo.setAppName("测试应用");
+        tabAppInfo.setAppType("I");
+        int line = tabAppInfoMapper.insert(tabAppInfo);
+        log.info("lines:{}",line);
+        log.info("appid is {}",tabAppInfo.getAppId() + "");
+    }
+
     @Test
     public void testPage(){
         QueryWrapper<TabAppInfo> appInfoWrapper = new QueryWrapper<TabAppInfo>();
